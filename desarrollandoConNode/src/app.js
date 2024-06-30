@@ -1,11 +1,5 @@
-//import template from './js-foundation/01-template';
-
-//const emailTemplate = require('./js-foundation/01-template');
-//require('./js-foundation/02-destructuring'); //cuando hacemos este requiere estamos ejecutando ya el destructuring
 // Importar la función getUserById desde el archivo de callbacks
-
-
-/*clase 28 del curso 
+/*
 import { getUserById } from './js-foundation/03-callbacks.js';
 
 // Definir el ID que vamos a buscar
@@ -31,7 +25,7 @@ getUserById(id, (err, user) => {
 });
 */
 
-//clase 32 factory function factory callbacks 
+// Clase 32 factory function factory callbacks 
 /*
 import { getUUID } from './plugins/get-id.plugin.js';
 import { getAge } from './plugins/get-age.plugin.js';
@@ -39,7 +33,7 @@ import { getAge } from './plugins/get-age.plugin.js';
 // Importar la función buildMakePerson
 import { buildMakePerson } from './js-foundation/05-factory.js';
 
-// Usar la función buildMakePerson con getUUID y getAge
+// Usar la función buildMakePerson con getUUID y getAge2
 const makePerson = buildMakePerson(getUUID, getAge);
 
 const objeto = { name: 'brandon', birthdate: '2002-06-11' };
@@ -47,10 +41,10 @@ const brandon = makePerson(objeto);
 
 console.log(brandon);
 */
+
+// Clase 33 promises
 /*
-//clase 33 promises
-//import getpokemonById from './js-foundation/06-pronises';
-const getpokemonById = require('./js-foundation/06-pronises.js');
+import getpokemonById from './js-foundation/06-pronises';
 
 getpokemonById(4)
   .then((pokemons) => console.log({ pokemons }))
@@ -58,10 +52,7 @@ getpokemonById(4)
   .finally(() => console.log('finalmente'));
 */
 
-
-
-//clase 37 
-
+// Clase 37 
 const { getAge, getUUID } = require('./plugins');
 
 // const { emailTemplate } = require('./js-foundation/01-template');
@@ -69,16 +60,12 @@ const { getAge, getUUID } = require('./plugins');
 // const { getUserById } = require('./js-foundation/03-callbacks');
 // const { getUserById } = require('./js-foundation/04-arrow');
 // const { buildMakePerson } = require('./js-foundation/05-factory')
-const getPokemonById = require('./js-foundation/06-pronises');
+//const getPokemonById = require('./js-foundation/06-pronises');
+const { buildLogger } = require('./plugins/index');
 
+// Crear el logger
+const logger = buildLogger('app.js');
 
-getPokemonById(4)
-  .then( ( pokemon ) => console.log({ pokemon }) )
-  .catch( ( err ) => console.log( err ) )
-  .finally( () => console.log('Finalmente') );
-
-
-
-
-
-
+// Ejemplo de uso del logger
+logger.log('info', 'Hola mundo');
+console.log("La aplicación está corriendo...");
