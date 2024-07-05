@@ -94,7 +94,7 @@ npm i -D typescript @types/node
 2. Inicializar el archivo de configuración de TypeScript ( Se puede configurar al gusto)
 ```
 npx tsc --init --outDir dist/ --rootDir src
-```
+
 
 3. **Opcional** - Para traspilar el código, se puede usar este comando
 ```
@@ -133,7 +133,7 @@ npm install -D rimraf
 ```
 
 
-
+# Se usara esto en el project 04
 # Node con TypeScript - Recomendado
 
 1. Instalar TypeScript y demás dependencias
@@ -145,6 +145,17 @@ npm i -D typescript @types/node ts-node nodemon rimraf
 ```
 npx tsc --init --outDir dist/ --rootDir src
 ```
+
+2.1. Agrrgsmos exclude y include solamente a la siguiente configuración de en tsconfig.js
+```
+{
+  "exclude": ["node_modules"],
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+
+```
+
 
 3. Crear archivo de configuración Nodemon - nodemon.json
 ```

@@ -1,0 +1,18 @@
+{
+  "name": "nodejs-curso",
+  "version": "1.0.0",
+  "description": "Nodejs de 0 a experto-Fernando Herrera",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "brandon",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "nodemon": "^3.1.4",
+    "rimraf": "^5.0.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  }
+}

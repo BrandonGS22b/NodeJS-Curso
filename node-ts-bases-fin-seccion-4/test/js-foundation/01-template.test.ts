@@ -16,12 +16,7 @@ describe('js-foundation/01-template.test.ts ', () => {
         //ahora vamos hacerlo con el orderId
         expect(emailTemplate).toContain('{{orderId}}')
 
-
-
-
-
-
-
+//lession 58  vamos con el destructuring
 
     });
 
