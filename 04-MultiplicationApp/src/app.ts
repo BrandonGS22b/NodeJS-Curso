@@ -1,6 +1,5 @@
 //en este ejercicio estare haciendo la logica para imprimir la tabla del 5 y la imprimiremos con el fs en un txt
-
-import fs from  'fs';
+/*import fs from  'fs';
 let outputMessage = '';
 const base = 5;
 const headerMessage = `
@@ -33,3 +32,9 @@ fs.writeFile('tabla_del_6.txt'm impresion , (err) =>{
 
 
 */
+
+import { argv } from "yargs";
+import { yarg } from "./config/plugins/args.plugin";
+
+console.log(process.argv);
+console.log(argv);
