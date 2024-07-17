@@ -1,70 +1,58 @@
-//import {yarg} from './args.plugin';
-
-import { argv } from "process";
-
-//para no usar la importacion tambien podeos hacer
-
-const runCommand = async(args:string[]) => {
-    process.argv=[...process.argv, ...args];
-        const {yarg} = await import ('./args.plugin.ts')
+// import { yarg } from './args.plugin';
 
 
-        return yarg;
-};
+const runCommand = async (args: string[]) => {
 
-describe('test args.plugins.ts', () => {
-    const originalArgv = process.argv;
-    beforeEach(() => {
-        process.argv = originalArgv;
-        jest.resetModules();
-    });
-    
+  process.argv = [...process.argv, ...args];
+
+  const { yarg } = await import('./args.plugin');
+
+  return yarg;
+}
 
 
 
+describe('Test args.plugin.ts', () => {
 
-    test('should return default value ,regreso de los valores por defecto ', async() => {
-        const argv = await runCommand(['-b','5']);
-        expect(argv).toEqual(expect.objectContaining({
-            b: 5,
-            l: 10,
-            s: false,
-            n:'multiplication-table',
-            d: 'outputs'
+  const originalArgv = process.argv;
 
-
-
-        }));
-
-
-        
-     
+  beforeEach(() => {
+    process.argv = originalArgv;
+    jest.resetModules();
+  });
 
 
 
+  test('should return default values', async () => {
 
-    });
+    const argv = await runCommand(['-b', '5']);
 
-    test ('should return configuration with custom values', async() => {
-        const argv = await runCommand(['-b','3','-l','20','-s','-n','custom-table','-d','custom-outputs']);
-        expect(argv).toEqual(expect.objectContaining({
-            b: 3,
-            l: 20,
-            s: true,
-            n: 'custom-table',
-            d: 'custom-outputs'
+    expect(argv).toEqual(expect.objectContaining({
+      b: 5,
+      l: 10,
+      s: false,
+      n: 'multiplication-table',
+      d: 'outputs',
+    }));
 
-        }));
-
-
+  });
 
 
-    });
+  test('should return configuration with custom values', async() => {
+
+    const argv = await runCommand(['-b', '8', '-l', '20', '-s', '-n', 'custom-name', '-d', 'custom-dir']);
+
+    expect(argv).toEqual(expect.objectContaining({
+      b: 8,
+      l: 20,
+      s: true,
+      n: 'custom-name',
+      d: 'custom-dir',
+    }));
 
 
-    
 
-
+  });
 
 
 });

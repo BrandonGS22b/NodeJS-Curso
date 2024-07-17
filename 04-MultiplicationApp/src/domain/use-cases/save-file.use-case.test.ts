@@ -1,81 +1,97 @@
-import { SaveFile } from './save-file.use-case';
 import fs from 'fs';
-
-describe('saveFileuseCase', () => {
-
-    test('should save a multiplication table to a file', async () => {
-        //Arrange (Preparar):
-        const saveFile= new SaveFile();
-        const filePath = 'output/table.txt ';
-        const options = {
-            fileContent:'test content',
-
-        };
-        /*
-Act (Actuar):
-
-Llama al método execute con las opciones definidas.
-Verifica si el archivo se creó.
-Lee el contenido del archivo. */
-        const result = saveFile.execute(options);
-        const fileExists = fs.existsSync(filePath); //ojo esto valida que el archivo existe p alla sido creado
-        const fileContent = fs.readFileSync(filePath, 'utf8');
-
-       /*Assert (Afirmar):
-
-Asegura que execute devolvió true.
-Asegura que el archivo existe.
-Asegura que el contenido del archivo es el esperado. */
-        
-
-
-        expect(result).toBe(true);
-        expect(fileExists).toBe(true);
-        expect(fileContent).toBe(options.fileContent);
-
-    });
-
-    test('should save file with custom values',()=>{
-
-        const options = {
-            fileContent:'Custom content',
-            fileName:'custom-Table-name',
-            fileDestination:'custom-outputs/file-destination',
-
-        }   
-
-         //Arrange (Preparar):
-         const saveFile= new SaveFile();
-         const filePath = `${options.fileDestination}/${options.fileName}.txt`;
-         const result = saveFile.execute(options);
-         const fileExists = fs.existsSync(filePath); //ojo esto valida que el archivo existe p alla sido creado
-         const fileContent = fs.readFileSync(filePath, 'utf8');	
-         
-
-         /*
-Act (Actuar):
-Llama al método execute con las opciones definidas.
-Verifica si el archivo se creó.
-Lee el contenido del archivo. */
-        
-
-        expect(result).toBe(true);
-        expect(fileExists).toBe(true);
-        expect(fileContent).toBe(options.fileContent);
+import { SaveFile } from './save-file.use-case';
 
 
 
+describe('SaveFileUseCase', () => {
 
- /*Assert (Afirmar):
+  const customOptions = {
+    fileContent: 'custom content',
+    fileDestination: 'custom-outputs/file-destination',
+    fileName: 'custom-table-name',
+  }
 
-Asegura que execute devolvió true.
-Asegura que el archivo existe.
-Asegura que el contenido del archivo es el esperado. */
+  const customFilePath = `${customOptions.fileDestination}/${customOptions.fileName}.txt`;
+
+  // beforeEach(() => {
+  //   jest.clearAllMocks();
+  // });
 
 
+  afterEach(() => {
+    const outputFolderExists = fs.existsSync('outputs');
+    if ( outputFolderExists ) fs.rmSync('outputs', { recursive: true });
+      
+    const customOutputFolderExists = fs.existsSync(customOptions.fileDestination);
+    if ( customOutputFolderExists ) fs.rmSync(customOptions.fileDestination, { recursive: true });
+    
+  });
+
+  test('should save file with default values', () => {
+
+    const saveFile = new SaveFile();
+    const filePath = 'outputs/table.txt';
+    const options = {
+      fileContent: 'test content'
+    }
+
+    const result = saveFile.execute(options);
+    const fileExists = fs.existsSync(filePath); // ojo
+    const fileContent = fs.readFileSync(filePath, { encoding: 'utf-8' });
+    
+    expect( result ).toBe( true );
+    expect( fileExists ).toBe( true );
+    expect( fileContent ).toBe( options.fileContent );
+    
+
+  });
 
 
-    } )
+  test('should save file with custom values', () => {
+
+    const saveFile = new SaveFile();
+    
+    const result = saveFile.execute(customOptions);
+    const fileExists = fs.existsSync(customFilePath);
+    const fileContent = fs.readFileSync(customFilePath, { encoding: 'utf-8' });
+    
+    expect( result ).toBe( true );
+    expect( fileExists ).toBe( true );
+    expect( fileContent ).toBe( customOptions.fileContent );
+
+  });
+
+  test('should return false if directory could not be created', () => {
+
+    const saveFile = new SaveFile();
+    const mkdirSpy = jest.spyOn(fs, 'mkdirSync').mockImplementation(
+      () => { throw new Error('This is a custom error message from testing'); }
+    );
+    
+    const result = saveFile.execute(customOptions);
+
+    expect( result ).toBe( false );
+
+    mkdirSpy.mockRestore();
+
+  });
+
+
+  test('should return false if file could not be created', () => {
+
+    const saveFile = new SaveFile();
+    const writeFileSpy = jest.spyOn(fs, 'writeFileSync').mockImplementation(
+      () => { throw new Error('This is a custom writing error message'); }
+    );
+    
+    const result = saveFile.execute({ fileContent: 'Hola' });
+
+    expect( result ).toBe( false );
+
+    writeFileSpy.mockRestore();
+  });
+
 
 
 });
+
