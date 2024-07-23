@@ -1,15 +1,16 @@
-import { Server } from "./presentation/server";
+import { Server } from './presentation/server';
 
-(async () => {
-    try {
-   
-        main();
-        
-    } catch (error) {
-        console.error('Error during initialization:', error);
-    }
+
+
+
+(async() => {
+  main();
 })();
 
-function main() {
-    Server.start();
+
+function main(){
+  Server.start();
+
 }
+
+

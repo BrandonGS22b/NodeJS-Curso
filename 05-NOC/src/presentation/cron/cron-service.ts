@@ -1,5 +1,3 @@
-//este cron nos sirve para ejecutar el servidor cada segundo mediante esta libreria
-//link:  https://www.npmjs.com/package/cron
 import { CronJob } from 'cron';
 
 type CronTime = string | Date;
