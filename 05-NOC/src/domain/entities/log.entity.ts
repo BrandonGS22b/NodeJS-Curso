@@ -2,22 +2,23 @@ export enum LogServerLevel {
     low = 'low',
     medium = 'medium',
     high = 'high',
-
-
-};
-
+}
 
 export class LogEntity {
-    public level: LogServerLevel;  //Enum
+    public level: LogServerLevel;  // Enum
     public message: string;
     public createdAt: Date;
 
-    constructor(message: string, createdAt: Date, level: LogServerLevel){
+    constructor(message: string, level: LogServerLevel) {
         this.message = message;
-        this.createdAt = new Date();
         this.level = level;
-
+        this.createdAt = new Date();
     }
 
-
-};
+    static fromJson(json: string): LogEntity {
+        const { message, level, createdAt } = JSON.parse(json);
+        const log = new LogEntity(message, level);
+        log.createdAt = new Date(createdAt);
+        return log;
+    }
+}
