@@ -11,13 +11,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = require("./presentation/server");
 (() => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        main();
-    }
-    catch (error) {
-        console.error('Error during initialization:', error);
-    }
+    main();
 }))();
 function main() {
     server_1.Server.start();
+    // console.log( envs );
 }
