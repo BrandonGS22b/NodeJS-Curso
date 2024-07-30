@@ -15,21 +15,23 @@ export class Server {
   public static start() {
 
     console.log( 'Server started...' );
+    //aqui vamos a madar emails
 
-    
-    CronService.createJob(
-      '*/5 * * * * *',
-      () => {
-        const url = 'https://google.com';
-        new CheckService(
-          fileSystemLogRepository,
-          () => console.log( `${ url } is ok` ),
-          ( error ) => console.log( error ),
-        ).execute( url );
+   
+    //aqui se esta ejecutando el servidor o pagina de google
+    //CronService.createJob(
+      //'*/5 * * * * *',
+      //() => {
+        //const url = 'https://google.com';
+        //new CheckService(
+          //fileSystemLogRepository,
+          //() => console.log( `${ url } is ok` ),
+          //( error ) => console.log( error ),
+        //).execute( url );
         // new CheckService().execute( 'http://localhost:3000' );
         
-      }
-    );
+      //}
+    //);
 
 
   }
