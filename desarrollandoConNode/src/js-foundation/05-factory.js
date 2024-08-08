@@ -7,23 +7,18 @@
 // Importar función getAge desde '../plugins/get-age.plugin'
 //const { getAge } = require('../plugins/get-age.plugins');
 
-
-
-const buildMakePerson =(getUUID,getAge) =>{
-
-    return  ({ name, birthdate }) => {
-        return {
-            id: getUUID(),         // Genera un ID único usando getUUID()
-            name: name,
-            birthdate: birthdate,
-            age: getAge(birthdate), // Calcula la edad usando getAge() y la fecha de nacimiento
-        };
+const buildMakePerson = (getUUID, getAge) => {
+  return ({ name, birthdate }) => {
+    return {
+      id: getUUID(), // Genera un ID único usando getUUID()
+      name: name,
+      birthdate: birthdate,
+      age: getAge(birthdate), // Calcula la edad usando getAge() y la fecha de nacimiento
     };
-
-}
+  };
+};
 
 // Definir función de tipo flecha buildPerson
-
 
 // Objeto con datos para crear una persona
 //const objeto = { name: 'brandon', birthdate: '2002-06-11' };
@@ -34,14 +29,9 @@ const buildMakePerson =(getUUID,getAge) =>{
 //console.log(brandon); // Imprime el objeto 'brandon' que representa a la persona creada
 
 module.exports = {
-    buildMakePerson,
-    //buildPerson
-    
-}
-
-
-
-
+  buildMakePerson,
+  //buildPerson
+};
 
 /*
 // Ejemplo utilizando una clase (factory function)

@@ -43,7 +43,3 @@ logger.error('Esto es algo malo');
 // console.log({ john });
 
 */
-
-
-
-

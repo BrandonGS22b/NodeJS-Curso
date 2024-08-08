@@ -1,13 +1,13 @@
-const { getUUID } = require('../plugins/get-id.plugin');
-const { getAge }  = require('../plugins/get-age.plugins');
+const { getUUID } = require("../plugins/get-id.plugin");
+const { getAge } = require("../plugins/get-age.plugins");
 
-const { http } = require('../plugins/http-client.plugin');
+const { http } = require("../plugins/http-client.plugin");
 
-const buildLogger = require('../plugins/logger.plugin');
+const buildLogger = require("../plugins/logger.plugin");
 
 module.exports = {
-  getAge, 
+  getAge,
   getUUID,
   http,
   buildLogger,
-}
+};

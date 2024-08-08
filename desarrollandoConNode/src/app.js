@@ -25,7 +25,7 @@ getUserById(id, (err, user) => {
 });
 */
 
-// Clase 32 factory function factory callbacks 
+// Clase 32 factory function factory callbacks
 /*
 import { getUUID } from './plugins/get-id.plugin.js';
 import { getAge } from './plugins/get-age.plugin.js';
@@ -52,8 +52,8 @@ getpokemonById(4)
   .finally(() => console.log('finalmente'));
 */
 
-// Clase 37 
-const { getAge, getUUID } = require('./plugins');
+// Clase 37
+const { getAge, getUUID } = require("./plugins");
 
 // const { emailTemplate } = require('./js-foundation/01-template');
 // require('./js-foundation/02-destructuring');
@@ -61,11 +61,11 @@ const { getAge, getUUID } = require('./plugins');
 // const { getUserById } = require('./js-foundation/04-arrow');
 // const { buildMakePerson } = require('./js-foundation/05-factory')
 //const getPokemonById = require('./js-foundation/06-pronises');
-const { buildLogger } = require('./plugins/index');
+const { buildLogger } = require("./plugins/index");
 
 // Crear el logger
-const logger = buildLogger('app.js');
+const logger = buildLogger("app.js");
 
 // Ejemplo de uso del logger
-logger.log('info', 'Hola mundo');
+logger.log("info", "Hola mundo");
 console.log("La aplicación está corriendo...");

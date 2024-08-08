@@ -1,31 +1,23 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 interface ConnectionOptions {
   mongoUrl: string;
   dbName: string;
 }
 
-
 export class MongoDatabase {
-
-  static async connect( options: ConnectionOptions ) {
+  static async connect(options: ConnectionOptions) {
     const { mongoUrl, dbName } = options;
 
     try {
-      
-      await mongoose.connect( mongoUrl, {
+      await mongoose.connect(mongoUrl, {
         dbName: dbName,
       });
 
-      console.log('Mongo connected!');
-
-
+      console.log("Mongo connected!");
     } catch (error) {
-      console.log('Mongo connection error');
+      console.log("Mongo connection error");
       throw error;
     }
-
   }
-
 }
-

@@ -1,13 +1,14 @@
 # NodeJS-Curso
+
 Nodejs de 0 a experto-Fernando Herrera
 
 # [React](https://react.dev/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/react) [![CircleCI Status](https://circleci.com/gh/facebook/react.svg?style=shield)](https://circleci.com/gh/facebook/react) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://legacy.reactjs.org/docs/how-to-contribute.html#your-first-pull-request)
 
 React is a JavaScript library for building user interfaces.
 
-* **Declarative:** React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable, simpler to understand, and easier to debug.
-* **Component-Based:** Build encapsulated components that manage their own state, then compose them to make complex UIs. Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep the state out of the DOM.
-* **Learn Once, Write Anywhere:** We don't make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code. React can also render on the server using [Node](https://nodejs.org/en) and power mobile apps using [React Native](https://reactnative.dev/).
+- **Declarative:** React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable, simpler to understand, and easier to debug.
+- **Component-Based:** Build encapsulated components that manage their own state, then compose them to make complex UIs. Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep the state out of the DOM.
+- **Learn Once, Write Anywhere:** We don't make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code. React can also render on the server using [Node](https://nodejs.org/en) and power mobile apps using [React Native](https://reactnative.dev/).
 
 [Learn how to use React in your project](https://react.dev/learn).
 
@@ -15,29 +16,29 @@ React is a JavaScript library for building user interfaces.
 
 React has been designed for gradual adoption from the start, and **you can use as little or as much React as you need**:
 
-* Use [Quick Start](https://react.dev/learn) to get a taste of React.
-* [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project) to use as little or as much React as you need.
-* [Create a New React App](https://react.dev/learn/start-a-new-react-project) if you're looking for a powerful JavaScript toolchain.
+- Use [Quick Start](https://react.dev/learn) to get a taste of React.
+- [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project) to use as little or as much React as you need.
+- [Create a New React App](https://react.dev/learn/start-a-new-react-project) if you're looking for a powerful JavaScript toolchain.
 
 ## Documentation
 
-You can find the React documentation [on the website](https://react.dev/).  
+You can find the React documentation [on the website](https://react.dev/).
 
 Check out the [Getting Started](https://react.dev/learn) page for a quick overview.
 
 The documentation is divided into several sections:
 
-* [Quick Start](https://react.dev/learn)
-* [Tutorial](https://react.dev/learn/tutorial-tic-tac-toe)
-* [Thinking in React](https://react.dev/learn/thinking-in-react)
-* [Installation](https://react.dev/learn/installation)
-* [Describing the UI](https://react.dev/learn/describing-the-ui)
-* [Adding Interactivity](https://react.dev/learn/adding-interactivity)
-* [Managing State](https://react.dev/learn/managing-state)
-* [Advanced Guides](https://react.dev/learn/escape-hatches)
-* [API Reference](https://react.dev/reference/react)
-* [Where to Get Support](https://react.dev/community)
-* [Contributing Guide](https://legacy.reactjs.org/docs/how-to-contribute.html)
+- [Quick Start](https://react.dev/learn)
+- [Tutorial](https://react.dev/learn/tutorial-tic-tac-toe)
+- [Thinking in React](https://react.dev/learn/thinking-in-react)
+- [Installation](https://react.dev/learn/installation)
+- [Describing the UI](https://react.dev/learn/describing-the-ui)
+- [Adding Interactivity](https://react.dev/learn/adding-interactivity)
+- [Managing State](https://react.dev/learn/managing-state)
+- [Advanced Guides](https://react.dev/learn/escape-hatches)
+- [API Reference](https://react.dev/reference/react)
+- [Where to Get Support](https://react.dev/community)
+- [Contributing Guide](https://legacy.reactjs.org/docs/how-to-contribute.html)
 
 You can improve it by sending pull requests to [this repository](https://github.com/reactjs/react.dev).
 
@@ -46,19 +47,19 @@ You can improve it by sending pull requests to [this repository](https://github.
 We have several examples [on the website](https://react.dev/). Here is the first one to get you started:
 
 ```jsx
-import { createRoot } from 'react-dom/client';
+import { createRoot } from "react-dom/client";
 
 function HelloMessage({ name }) {
   return <div>Hello {name}</div>;
 }
 
-const root = createRoot(document.getElementById('container'));
+const root = createRoot(document.getElementById("container"));
 root.render(<HelloMessage name="Taylor" />);
 ```
 
 This example will render "Hello Taylor" into a container on the page.
 
-You'll notice that we used an HTML-like syntax; [we call it JSX](https://react.dev/learn#writing-markup-with-jsx). JSX is not required to use React, but it makes code more readable, and writing it feels like writing HTML. 
+You'll notice that we used an HTML-like syntax; [we call it JSX](https://react.dev/learn#writing-markup-with-jsx). JSX is not required to use React, but it makes code more readable, and writing it feels like writing HTML.
 
 ## Contributing
 
@@ -80,56 +81,68 @@ To help you get your feet wet and get you familiar with our contribution process
 
 React is [MIT licensed](./LICENSE).
 
-
-
-
 # Pasos para usar Node con TypeScript con Nodemon
 
 Más información - [Docs Oficiales](https://nodejs.org/en/learn/getting-started/nodejs-with-typescript)
 
 1. Instalar TypeScript y tipos de Node, como dependencia de desarrollo
+
 ```
 npm i -D typescript @types/node
 ```
+
 2. Inicializar el archivo de configuración de TypeScript ( Se puede configurar al gusto)
+
 ```
 npx tsc --init --outDir dist/ --rootDir src
 
 
 3. **Opcional** - Para traspilar el código, se puede usar este comando
 ```
+
 npx tsc
 npx tsc --watch
+
 ```
 
 4. Configurar Nodemon y Node-TS
 ```
+
 npm install -D ts-node nodemon
+
 ```
 5. Crear archivo de configuración de Nodemon - **nodemon.json**
 ```
+
 {
-  "watch": ["src"],
-  "ext": ".ts,.js",
-  "ignore": [],
-  "exec": "npx ts-node ./src/app.ts"
+"watch": ["src"],
+"ext": ".ts,.js",
+"ignore": [],
+"exec": "npx ts-node ./src/app.ts"
 }
+
 ```
 6. Crear script para correr en desarrollo en el **package.json**
 ```
-  "dev": "nodemon"
-  "dev": "npx nodemon" // En caso de no querer instalar nodemon
+
+"dev": "nodemon"
+"dev": "npx nodemon" // En caso de no querer instalar nodemon
+
 ```
 
 7. Instalar rimraf (Herramienta que funciona similar al rm -f) eliminar directorio
 ```
+
 npm install -D rimraf
+
 ```
 
 8. Crear scripts en el package.json para construir e iniciar en producción
 ```
-   "build": "rimraf ./dist && tsc",
-   "start": "npm run build && node dist/app.js"
+
+"build": "rimraf ./dist && tsc",
+"start": "npm run build && node dist/app.js"
+
 ```
 
 
@@ -138,40 +151,50 @@ npm install -D rimraf
 
 1. Instalar TypeScript y demás dependencias
 ```
+
 npm i -D typescript @types/node ts-node nodemon rimraf
+
 ```
 
 2. Inicializar el archivo de configuración de TypeScript ( Se puede configurar al gusto)
 ```
+
 npx tsc --init --outDir dist/ --rootDir src
+
 ```
 
 2.1. Agrrgsmos exclude y include solamente a la siguiente configuración de en tsconfig.js
 ```
+
 {
-  "exclude": ["node_modules"],
-  "include": ["src/**/*"],
-  "compilerOptions": {
-    /* Visit https://aka.ms/tsconfig to read more about this file */
+"exclude": ["node_modules"],
+"include": ["src/**/*"],
+"compilerOptions": {
+/_ Visit https://aka.ms/tsconfig to read more about this file _/
 
 ```
 
 
 3. Crear archivo de configuración Nodemon - nodemon.json
 ```
+
 {
-  "watch": ["src"],
-  "ext": ".ts,.js",
-  "ignore": [],
-  "exec": "npx ts-node ./src/app.ts"
+"watch": ["src"],
+"ext": ".ts,.js",
+"ignore": [],
+"exec": "npx ts-node ./src/app.ts"
 }
+
 ```
 
 4. Crear scripts para dev, build y start
 
 ```
-  "dev": "nodemon",
-  "build": "rimraf ./dist && tsc",
-  "start": "npm run build && node dist/app.js"
+
+"dev": "nodemon",
+"build": "rimraf ./dist && tsc",
+"start": "npm run build && node dist/app.js"
+
 ```
 
+```

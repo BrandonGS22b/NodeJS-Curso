@@ -13,13 +13,12 @@ const { shell, HOMEBREW_PREFIX, npm_lifecycle } = process.env;
 /**
  * Defino un arreglo de nombres de superhéroes.
  */
-const characters = ['flash', 'superman', 'batman'];
+const characters = ["flash", "superman", "batman"];
 
 /**
  * Utilizo sintaxis de desestructuración para extraer elementos individuales del arreglo characters
  * y almacenarlos en constantes separadas.
  */
-const [ flash, superman, batman ] = characters;
-
+const [flash, superman, batman] = characters;
 
 console.log(batman);

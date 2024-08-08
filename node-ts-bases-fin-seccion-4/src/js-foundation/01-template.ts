@@ -1,5 +1,3 @@
-
-
 export const emailTemplate = `
 <div>
     <h1>Hi, {{name}}</h1>
@@ -7,4 +5,4 @@ export const emailTemplate = `
     <p>Order ID: {{orderId}}</p>
 </div>`;
 
-export default emailTemplate
+export default emailTemplate;

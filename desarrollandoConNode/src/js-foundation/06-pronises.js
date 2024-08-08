@@ -9,7 +9,7 @@ const getpokemonById =(id) => {
 
 };
 */
-//vamos a trabajar con async 
+//vamos a trabajar con async
 
 /*
 
@@ -41,24 +41,18 @@ const getpokemon = async (id) => {
 module.exports = getpokemon;
 */
 
-
-const axios = require('axios');
+const axios = require("axios");
 
 const getPokemonById = async (id) => {
-    const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-    
-    try {
-        const response = await axios.get(url);
-        return response.data.name;
-    } catch (error) {
-        console.error('Error fetching Pokemon:', error.message);
-        throw error; // Propaga el error para manejarlo más arriba si es necesario
-    }
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+
+  try {
+    const response = await axios.get(url);
+    return response.data.name;
+  } catch (error) {
+    console.error("Error fetching Pokemon:", error.message);
+    throw error; // Propaga el error para manejarlo más arriba si es necesario
+  }
 };
 
 module.exports = getPokemonById;
-
-  
-  
-  
-  

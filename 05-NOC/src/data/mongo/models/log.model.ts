@@ -1,7 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const logSchema = new mongoose.Schema({
-  
   message: {
     type: String,
     required: true,
@@ -11,17 +10,13 @@ const logSchema = new mongoose.Schema({
   },
   level: {
     type: String,
-    enum: ['low','medium','high'],
-    default: 'low'
+    enum: ["low", "medium", "high"],
+    default: "low",
   },
   createdAt: {
     type: Date,
-    default: new Date()
+    default: new Date(),
   },
-
 });
 
-
-export const LogModel = mongoose.model('Log', logSchema );
-
-
+export const LogModel = mongoose.model("Log", logSchema);
