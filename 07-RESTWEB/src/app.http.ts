@@ -1,18 +1,21 @@
-// Importa el módulo 'http' para crear el servidor web
-import http from 'http';
+// Importa el módulo 'http2' para crear el servidor web en HTTPS
+import http2 from 'http2';
 // Importa el módulo 'fs' para trabajar con el sistema de archivos
 import fs from 'fs';
 // Importa el módulo 'path' para manejar rutas de archivos
 import path from 'path';
 
-// Crea un servidor HTTP
-const server = http.createServer((req, res) => {
+// Crea un servidor HTTP/2 seguro
+const server = http2.createSecureServer({
+    key: fs.readFileSync(path.resolve(__dirname, '../Keys/server.key')),
+    cert: fs.readFileSync(path.resolve(__dirname, '../Keys/server.cert')),
+}, (req, res) => {
     // Imprime la URL de la solicitud en la consola
     console.log(req.url);
 
     // Construye la ruta del archivo basado en la URL solicitada
     let filePath = './public' + req.url;
-    
+
     // Si la URL es la raíz ("/"), sirve el archivo 'index.html'
     if (req.url === '/') {
         filePath = './public/index.html';
@@ -22,7 +25,7 @@ const server = http.createServer((req, res) => {
     fs.readFile(filePath, 'utf-8', (err, fileContent) => {
         if (err) {
             // Si hay un error al leer el archivo, responde con un error 500
-            res.writeHead(500, {'Content-Type': 'text/html'});
+            res.writeHead(500, { 'Content-Type': 'text/html' });
             res.end("<h1>500 Internal Server Error</h1>");
             return;
         }
@@ -44,7 +47,7 @@ const server = http.createServer((req, res) => {
         }
 
         // Responde con el contenido del archivo y el tipo de contenido correspondiente
-        res.writeHead(200, {'Content-Type': contentType});
+        res.writeHead(200, { 'Content-Type': contentType });
         res.end(fileContent);
     });
 });
