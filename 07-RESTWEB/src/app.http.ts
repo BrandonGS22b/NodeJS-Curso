@@ -1,58 +1,46 @@
-// Importa el módulo 'http' para crear el servidor web
-import http from 'http';
-// Importa el módulo 'fs' para trabajar con el sistema de archivos
 import fs from 'fs';
-// Importa el módulo 'path' para manejar rutas de archivos
-import path from 'path';
+import http from 'http';
 
-// Crea un servidor HTTP
+
 const server = http.createServer((req, res) => {
-    // Imprime la URL de la solicitud en la consola
-    console.log(req.url);
 
-    // Construye la ruta del archivo basado en la URL solicitada
-    let filePath = './public' + req.url;
-    
-    // Si la URL es la raíz ("/"), sirve el archivo 'index.html'
-    if (req.url === '/') {
-        filePath = './public/index.html';
-    }
+  console.log(req.url);
 
-    // Lee el archivo especificado de forma asíncrona
-    fs.readFile(filePath, 'utf-8', (err, fileContent) => {
-        if (err) {
-            // Si hay un error al leer el archivo, responde con un error 500
-            res.writeHead(500, {'Content-Type': 'text/html'});
-            res.end("<h1>500 Internal Server Error</h1>");
-            return;
-        }
+  // res.writeHead(200, { 'Content-Type': 'text/html' });
+  // res.write(`<h1>URL ${ req.url }</h1>`);
+  // res.end();
 
-        // Determina el tipo de contenido basado en la extensión del archivo
-        const extname = path.extname(filePath);
-        let contentType = 'text/html';
-        switch (extname) {
-            case '.js':
-                contentType = 'text/javascript';
-                break;
-            case '.css':
-                contentType = 'text/css';
-                break;
-            case '.ico':
-                contentType = 'image/x-icon';
-                break;
-            // Agrega más tipos de contenido si es necesario
-        }
+  // const data = { name: 'John Doe', age: 30, city: 'New York' };
+  // res.writeHead(200, { 'Content-Type': 'application/json' });
+  // res.end( JSON.stringify(data) );
 
-        // Responde con el contenido del archivo y el tipo de contenido correspondiente
-        res.writeHead(200, {'Content-Type': contentType});
-        res.end(fileContent);
-    });
+  if ( req.url === '/' ) {
+    const htmlFile = fs.readFileSync('./public/index.html','utf-8');
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end( htmlFile );
+    return;
+  } 
+
+  
+  if ( req.url?.endsWith('.js') ) {
+    res.writeHead(200, { 'Content-Type': 'application/javascript' });
+  } else if( req.url?.endsWith('.css')) {
+    res.writeHead(200, { 'Content-Type': 'text/css' });
+  }
+
+  const responseContent = fs.readFileSync(`./public${ req.url }`,'utf-8');
+  res.end(responseContent);
+
+
+
+
 });
 
-// Hace que el servidor escuche en el puerto 8080 y muestra un mensaje en la consola cuando el servidor esté en funcionamiento
+
+
 server.listen(8080, () => {
-    console.log("Server running on port 8080");
-});
+  console.log('Server running on port 8080');
+})
 
-// Código comentado para ejemplos anteriores
-console.log("hola brandon");
+
+
