@@ -1,11 +1,7 @@
 import { Request, Response } from 'express';
 import { prisma } from '../../data/postgres';
 
-const todos = [
-  { id: 1, text: 'Buy milk', completedAt: new Date() },
-  { id: 2, text: 'Buy bread', completedAt: null },
-  { id: 3, text: 'Buy butter', completedAt: new Date() },
-];
+
 
 
 export class TodosController {
@@ -14,15 +10,17 @@ export class TodosController {
   constructor() { }
 
 
-  public getTodos = ( req: Request, res: Response ) => {
+  public getTodos =async ( req: Request, res: Response ) => {
+    const todos = await prisma.todo.findMany();
     return res.json( todos );
   };
 
-  public getTodoById = ( req: Request, res: Response ) => {
+  public getTodoById = async ( req: Request, res: Response ) => {
     const id = +req.params.id;
     if ( isNaN( id ) ) return res.status( 400 ).json( { error: 'ID argument is not a number' } );
 
-    const todo = todos.find( todo => todo.id === id );
+    const todo = await prisma.todo.findFirst({ where: { id } });
+   
 
     ( todo )
       ? res.json( todo )
@@ -48,34 +46,42 @@ export class TodosController {
 
 
   ///actualizar
-  public updateTodo = ( req: Request, res: Response ) => {
+  public updateTodo =async ( req: Request, res: Response ) => {
     const id = +req.params.id;
     if ( isNaN( id ) ) return res.status( 400 ).json( { error: 'ID argument is not a number' } );
     
-    const todo = todos.find( todo => todo.id === id );
-    if ( !todo ) return res.status( 404 ).json( { error: `Todo with id ${ id } not found` } );
+    //llamamos a todo para bucar el id o objeto en la base de datos
+    const todo = await prisma.todo.findFirst({ where: { id } });
 
+    if ( !todo ) return res.status( 404 ).json( { error: `Todo with id ${ id } not found` } );
+    
     const { text, completedAt } = req.body;
     
-    todo.text = text || todo.text;
-    ( completedAt === 'null' )
-      ? todo.completedAt = null
-      : todo.completedAt = new Date( completedAt || todo.completedAt );
+    //para actualizar los datos los datos en la base de datos
+    const updatedTodo = prisma.todo.update({
+      where: { id },
+      data: {
+        text,
+        completedAt: completedAt === 'null'? null : new Date(completedAt)
+      }
+    })
     
 
     res.json( todo );
 
   }
 
-
-  public deleteTodo = (req:Request, res: Response) => {
+//controlador para eliminar
+  public deleteTodo = async(req:Request, res: Response) => {
     const id = +req.params.id;
-
-    const todo = todos.find(todo => todo.id === id );
+    //eliminamos este para bucar el id
+    //const todo = todos.find(todo => todo.id === id );
+    //ponemos el siguiente para hacer la busqueda en el mdelo todo en la base de datos 
+    const todo = await prisma.todo.findFirst({ where: { id } });
     if ( !todo ) return res.status(404).json({ error: `Todo with id ${ id } not found` });
 
-    todos.splice( todos.indexOf(todo), 1 );
-    res.json( todo );
+    const deleted=await prisma.todo.delete({ where: { id } });
+    res.json(deleted );
 
   }
   
