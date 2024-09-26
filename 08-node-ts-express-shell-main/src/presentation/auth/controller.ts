@@ -1,8 +1,6 @@
 import { Request, Response } from 'express';
-import { CustomError, LoginUserDto, RegisterUserDto } from '../../domain';
+import { LoginUserDto, RegisterUserDto } from '../../domain';
 import { AuthService } from '../services/auth.service';
-
-
 
 export class AuthController {
 
@@ -11,14 +9,13 @@ export class AuthController {
     public readonly authService: AuthService,
   ) {}
 
-  private handleError = (error: unknown, res: Response ) => {
-    if ( error instanceof CustomError ) {
-      return res.status(error.statusCode).json({ error: error.message });
-    }
+  private handleError = (error: unknown, res: Response) => {
+    // Manejo genérico de errores
+    console.error(error); // Log del error en el servidor
+    return res.status(500).json({ error: 'Internal server error' });
+  };
 
-    console.log(`${ error }`);
-    return res.status(500).json({ error: 'Internal server error' })
-  } 
+
 
 
   registerUser = (req: Request, res: Response) => {
